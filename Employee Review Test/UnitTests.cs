@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Employee_Review;
 
 namespace Employee_Review_Test
 {
@@ -12,34 +14,70 @@ namespace Employee_Review_Test
         [TestMethod]
         public void DepartmentCreation()
         {
-            Assert.AreEqual("Sales", d.Name());
+            Department news = new Department("News");
+            Assert.AreEqual("News", news.Name);
+        }
+
+        [TestMethod]
+        public void EmployeeCreation()
+        {
+            Employee parker = new Employee("Dave Parker", "news@thv11.com", "501-244-4514", 10000);
+            Assert.AreEqual("Dave Parker", parker.Name);
         }
 
         [TestMethod]
         public void EmployeeName()
         {
-            Assert.AreEqual("Kate", kate.Name());
+            Assert.AreEqual("Kate", kate.Name);
         }
 
         [TestMethod]
         public void AddEmployeeToDepartment()
         {
             d.AddEmployee(kate);
-            Assert.IsFalse(d.EmployeeList.count() == 0);
+            Assert.IsFalse(d.Employees.Count == 0);
         }
 
         [TestMethod]
         public void GetEmployeeName()
         {
-            string employeeName = kate.Name();
+            string employeeName = kate.Name;
             Assert.AreEqual("Kate", employeeName);
         }
+
         [TestMethod]
         public void GetEmployeeSalary()
         {
-            string employeeSalary = kate.Salary();
+            decimal employeeSalary = kate.Salary;
             Assert.AreEqual(8000, employeeSalary);
         }
 
+        [TestMethod]
+        public void GetDepartmentName()
+        {
+            string departmentName = d.Name;
+            Assert.AreEqual("Sales", departmentName);
+        }
+
+        [TestMethod]
+        public void GetDepartmentSalary()
+        {
+            string departmentSalary = d.TotalSalaries();
+            Assert.AreEqual(8000, departmentSalary);
+        }
+
+        [TestMethod]
+        public void AddReviewText()
+        {
+            kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
+            Assert.IsNotNull(kate.Review);
+        }
+
+        [TestMethod]
+        public void MarkEmployeeSatisfactory()
+        {
+            kate.IsSatisfactory = true;
+            Assert.IsTrue(kate.IsSatisfactory);
+        }
     }
 }
