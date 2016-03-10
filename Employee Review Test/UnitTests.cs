@@ -36,6 +36,8 @@ namespace Employee_Review_Test
         {
             d.AddEmployee(kate);
             Assert.IsFalse(d.Employees.Count == 0);
+
+            Assert.AreSame("Kate", d.Employees[0].Name);
         }
 
         [TestMethod]
@@ -62,22 +64,38 @@ namespace Employee_Review_Test
         [TestMethod]
         public void GetDepartmentSalary()
         {
-            string departmentSalary = d.TotalSalaries();
+            d.AddEmployee(kate);
+            decimal departmentSalary = d.TotalSalaries();
             Assert.AreEqual(8000, departmentSalary);
         }
 
+        //[TestMethod]
+        //public void AddReviewText()
+        //{
+        //    kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
+        //    Assert.IsNotNull(kate.Review);
+        //}
+
+        //[TestMethod]
+        //public void MarkEmployeeSatisfactory()
+        //{
+        //    kate.IsSatisfactory = true;
+        //    Assert.IsTrue(kate.IsSatisfactory);
+        //}
+
         [TestMethod]
-        public void AddReviewText()
+        public void TestRaise()
         {
-            kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
-            Assert.IsNotNull(kate.Review);
+            kate.Raise(200);
+            Assert.AreEqual(8200, kate.Salary);
         }
 
         [TestMethod]
-        public void MarkEmployeeSatisfactory()
+        public void TestDepartmentRaise()
         {
+            d.DepartmentRaise(200);
             kate.IsSatisfactory = true;
-            Assert.IsTrue(kate.IsSatisfactory);
+            Assert.AreEqual(8200, kate.Salary);
         }
     }
 }

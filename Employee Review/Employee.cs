@@ -22,5 +22,10 @@ namespace Employee_Review
         public decimal Salary { get; set; }
         public bool IsSatisfactory { get; set; }
         public string Review { get; set; }
+
+        public void Raise(decimal increase)
+        {
+            Salary += increase;
+        }
     }
 }
