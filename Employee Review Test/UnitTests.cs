@@ -10,6 +10,9 @@ namespace Employee_Review_Test
     {
         Department d = new Department("Sales");
         Employee kate = new Employee("Kate", "kramsey@thv11.com", "501-743-6074", 8000);
+        Employee parker = new Employee("Dave Parker", "news@thv11.com", "501-244-4514", 10000);
+        Employee byron = new Employee("B-dubs", "bwilkinson@thv11.com", "501-244-4517", 2 );
+
 
         [TestMethod]
         public void DepartmentCreation()
@@ -38,6 +41,19 @@ namespace Employee_Review_Test
             Assert.IsFalse(d.Employees.Count == 0);
 
             Assert.AreSame("Kate", d.Employees[0].Name);
+        }
+
+        [TestMethod]
+        public void AddMultipleEmployeesToDepartment()
+        {
+            d.AddEmployee(kate);
+            d.AddEmployee(byron);
+            d.AddEmployee(parker);
+            Assert.IsFalse(d.Employees.Count == 0);
+
+            Assert.AreSame("Kate", d.Employees[0].Name);
+            Assert.AreSame("B-dubs", d.Employees[1].Name);
+            Assert.AreSame("Dave Parker", d.Employees[2].Name);
         }
 
         [TestMethod]
@@ -97,6 +113,60 @@ namespace Employee_Review_Test
             kate.IsSatisfactory = true;
             d.DepartmentRaise(200);
             Assert.AreEqual(8200, kate.Salary);
+        }
+
+        [TestMethod]
+        public void TestDepartmentRaiseWithMultipleEmployeesAllSatisfactory()
+        {
+            d.AddEmployee(kate);
+            d.AddEmployee(byron);
+            d.AddEmployee(parker);
+
+            kate.IsSatisfactory = true;
+            parker.IsSatisfactory = true;
+            byron.IsSatisfactory = true;
+            d.DepartmentRaise(3000);
+            Assert.AreEqual(9000, kate.Salary);
+        }
+
+        [TestMethod]
+        public void TestDepartmentRaiseWithMultipleEmployeesNotAllSatisfactory()
+        {
+            d.AddEmployee(kate);
+            d.AddEmployee(byron);
+            d.AddEmployee(parker);
+
+            kate.IsSatisfactory = true;
+            parker.IsSatisfactory = false;
+            byron.IsSatisfactory = true;
+            d.DepartmentRaise(2000);
+            Assert.AreEqual(9000, kate.Salary);
+        }
+
+        [TestMethod]
+        public void PrintingEmployeeInfo()
+        {
+            d.AddEmployee(kate);
+            d.AddEmployee(byron);
+            d.AddEmployee(parker);
+
+            kate.IsSatisfactory = true;
+            parker.IsSatisfactory = false;
+            byron.IsSatisfactory = true;
+
+            string employeeInfoString = "";
+
+            employeeInfoString = $"{d.Employees[0].Name}'s email address is {d.Employees[0].EmailAddress} " +
+                                 $"Their phone number is {d.Employees[0].PhoneNumber} " +
+                                 $"and their salary is ${d.Employees[0].Salary}. " +
+                                 $"They are currently marked as Satisfactory: {d.Employees[0].IsSatisfactory}";
+
+            Assert.AreEqual("Kate's email address is kramsey@thv11.com Their phone number is 501-743-6074 and their salary is $8000. They are currently marked as Satisfactory: True", employeeInfoString);
+
+
+            
+                
+            
         }
     }
 }
