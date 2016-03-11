@@ -27,5 +27,10 @@ namespace Employee_Review
         {
             Salary += increase;
         }
+
+        public void EvaluateReview()
+        {
+            
+        }
     }
 }

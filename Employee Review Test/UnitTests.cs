@@ -93,6 +93,23 @@ namespace Employee_Review_Test
         }
 
         [TestMethod]
+        public void AssignNegativeReview()
+        {
+            kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
+            kate.EvaluateReview();
+            Assert.IsFalse(kate.IsSatisfactory);
+        }
+
+        [TestMethod]
+        public void AssignPositiveReview()
+        {
+            kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
+            kate.EvaluateReview();
+            Assert.IsTrue(kate.IsSatisfactory);
+        }
+
+
+        [TestMethod]
         public void MarkEmployeeSatisfactory()
         {
             kate.IsSatisfactory = true;
