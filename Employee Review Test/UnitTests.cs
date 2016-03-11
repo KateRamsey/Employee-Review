@@ -69,19 +69,19 @@ namespace Employee_Review_Test
             Assert.AreEqual(8000, departmentSalary);
         }
 
-        //[TestMethod]
-        //public void AddReviewText()
-        //{
-        //    kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
-        //    Assert.IsNotNull(kate.Review);
-        //}
+        [TestMethod]
+        public void AddReviewText()
+        {
+            kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
+            Assert.IsNotNull(kate.Review);
+        }
 
-        //[TestMethod]
-        //public void MarkEmployeeSatisfactory()
-        //{
-        //    kate.IsSatisfactory = true;
-        //    Assert.IsTrue(kate.IsSatisfactory);
-        //}
+        [TestMethod]
+        public void MarkEmployeeSatisfactory()
+        {
+            kate.IsSatisfactory = true;
+            Assert.IsTrue(kate.IsSatisfactory);
+        }
 
         [TestMethod]
         public void TestRaise()
@@ -93,8 +93,9 @@ namespace Employee_Review_Test
         [TestMethod]
         public void TestDepartmentRaise()
         {
-            d.DepartmentRaise(200);
+            d.AddEmployee(kate);
             kate.IsSatisfactory = true;
+            d.DepartmentRaise(200);
             Assert.AreEqual(8200, kate.Salary);
         }
     }
