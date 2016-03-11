@@ -95,7 +95,7 @@ namespace Employee_Review_Test
         [TestMethod]
         public void AssignNegativeReview()
         {
-            kate.Review = "Kate is amazing and we need to pay her more! The best employee I've ever had!!";
+            kate.Review = "Kate is not picking up new skills as quickly as we would like. She doesn't seem to put in enough effort, and she takes long lunches.";
             kate.EvaluateReview();
             Assert.IsFalse(kate.IsSatisfactory);
         }
