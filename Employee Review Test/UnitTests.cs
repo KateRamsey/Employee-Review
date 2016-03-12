@@ -140,12 +140,12 @@ namespace Employee_Review_Test
             Assert.IsTrue(kate.IsSatisfactory);
         }
 
-        [TestMethod]
-        public void MarkEmployeeSatisfactory()
-        {
-            kate.IsSatisfactory = true;
-            Assert.IsTrue(kate.IsSatisfactory);
-        }
+        //[TestMethod]
+        //public void MarkEmployeeSatisfactory()
+        //{
+        //    kate.IsSatisfactory = true;
+        //    Assert.IsTrue(kate.IsSatisfactory);
+        //}
 
         [TestMethod]
         public void TestRaise()
@@ -158,7 +158,8 @@ namespace Employee_Review_Test
         public void TestDepartmentRaise()
         {
             d.AddEmployee(kate);
-            kate.IsSatisfactory = true;
+            kate.Review = "good amazing";
+            kate.EvaluateReview();
             d.DepartmentRaise(200);
             Assert.AreEqual(8200, kate.Salary);
         }
@@ -170,9 +171,12 @@ namespace Employee_Review_Test
             d.AddEmployee(byron);
             d.AddEmployee(parker);
 
-            kate.IsSatisfactory = true;
-            parker.IsSatisfactory = true;
-            byron.IsSatisfactory = true;
+            kate.Review = "good amazing";
+            kate.EvaluateReview();
+            parker.Review = "good amazing";
+            parker.EvaluateReview();
+            byron.Review = "good amazing";
+            byron.EvaluateReview();
             d.DepartmentRaise(3000);
             Assert.AreEqual(9000, kate.Salary);
         }
@@ -184,9 +188,12 @@ namespace Employee_Review_Test
             d.AddEmployee(byron);
             d.AddEmployee(parker);
 
-            kate.IsSatisfactory = true;
-            parker.IsSatisfactory = false;
-            byron.IsSatisfactory = true;
+            kate.Review = "good amazing";
+            kate.EvaluateReview();
+            parker.Review = "He sucks";
+            parker.EvaluateReview();
+            byron.Review = "good amazing";
+            byron.EvaluateReview();
             d.DepartmentRaise(2000);
             Assert.AreEqual(9000, kate.Salary);
         }
@@ -198,11 +205,9 @@ namespace Employee_Review_Test
             d.AddEmployee(byron);
             d.AddEmployee(parker);
 
-            kate.IsSatisfactory = true;
-            parker.IsSatisfactory = false;
-            byron.IsSatisfactory = true;
-
             string employeeInfoString = "";
+            kate.Review = "good amazing";
+            kate.EvaluateReview();
 
             employeeInfoString = $"{d.Employees[0].Name}'s email address is {d.Employees[0].EmailAddress} " +
                                  $"Their phone number is {d.Employees[0].PhoneNumber} " +
