@@ -30,7 +30,12 @@ namespace Employee_Review
 
         public void EvaluateReview()
         {
-            
+            IsSatisfactory = false;
+            //Some RegEx stuff to interperate reviews
+            //if (postiveReview)
+            //{
+            //    IsSatisfactory = true;
+            //}
         }
     }
 }
