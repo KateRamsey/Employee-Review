@@ -20,7 +20,7 @@ namespace Employee_Review
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public decimal Salary { get; set; }
-        public bool IsSatisfactory { get; set; }
+        public bool IsSatisfactory { get; set; } //After building RegEx, change setter to private
         public string Review { get; set; }
 
         public void Raise(decimal increase)
