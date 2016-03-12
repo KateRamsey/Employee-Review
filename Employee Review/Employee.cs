@@ -31,11 +31,11 @@ namespace Employee_Review
         public void EvaluateReview()
         {
             IsSatisfactory = false;
-            //Some RegEx stuff to interperate reviews
-            //if (postiveReview)
-            //{
-            //    IsSatisfactory = true;
-            //}
+            string sPattern = "good | satisf | effect | asset | success | pleasure | amazing";
+            if (System.Text.RegularExpressions.Regex.IsMatch(this.Review, sPattern))
+            {
+                IsSatisfactory = true;
+            }
         }
     }
 }
