@@ -25,23 +25,26 @@ public class Department
 
     public void DepartmentRaise(decimal raiseBudget)
     {
-        int employeesToGetRaises = 0;
-        foreach (Employee e in Employees)
+        if (raiseBudget > 0)
         {
-            if (e.IsSatisfactory)
-            {
-                employeesToGetRaises++;
-            }
-        }
-        if (employeesToGetRaises != 0)
-        {
-            decimal raisePerPerson = raiseBudget / employeesToGetRaises;
-
+            int employeesToGetRaises = 0;
             foreach (Employee e in Employees)
             {
                 if (e.IsSatisfactory)
                 {
-                    e.Salary += raisePerPerson;
+                    employeesToGetRaises++;
+                }
+            }
+            if (employeesToGetRaises != 0)
+            {
+                decimal raisePerPerson = raiseBudget/employeesToGetRaises;
+
+                foreach (Employee e in Employees)
+                {
+                    if (e.IsSatisfactory)
+                    {
+                        e.Salary += raisePerPerson;
+                    }
                 }
             }
         }

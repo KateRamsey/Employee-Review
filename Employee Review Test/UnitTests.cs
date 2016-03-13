@@ -148,6 +148,14 @@ namespace Employee_Review_Test
         //}
 
         [TestMethod]
+        public void EmptyReviewString()
+        {
+            kate.Review = "";
+            kate.EvaluateReview();
+            Assert.IsFalse(kate.IsSatisfactory);
+        }
+
+        [TestMethod]
         public void TestRaise()
         {
             kate.Raise(200);
@@ -211,6 +219,40 @@ namespace Employee_Review_Test
         }
 
         [TestMethod]
+        public void TestDepartmentRaiseOfZeroDollars()
+        {
+            d.AddEmployee(kate);
+            d.AddEmployee(byron);
+            d.AddEmployee(parker);
+
+            kate.Review = "good amazing";
+            kate.EvaluateReview();
+            parker.Review = "good amazing";
+            parker.EvaluateReview();
+            byron.Review = "good amazing";
+            byron.EvaluateReview();
+            d.DepartmentRaise(0);
+            Assert.AreEqual(8000, kate.Salary);
+        }
+
+        [TestMethod]
+        public void TestDepartmentRaiseOfNegativeDollars()
+        {
+            d.AddEmployee(kate);
+            d.AddEmployee(byron);
+            d.AddEmployee(parker);
+
+            kate.Review = "good amazing";
+            kate.EvaluateReview();
+            parker.Review = "good amazing";
+            parker.EvaluateReview();
+            byron.Review = "good amazing";
+            byron.EvaluateReview();
+            d.DepartmentRaise(-9000);
+            Assert.AreEqual(8000, kate.Salary);
+        }
+
+        [TestMethod]
         public void TestDepartmentRaiseWithMultipleEmployeesNotAllSatisfactory()
         {
             d.AddEmployee(kate);
@@ -244,11 +286,6 @@ namespace Employee_Review_Test
                                  $"They are currently marked as Satisfactory: {d.Employees[0].IsSatisfactory}";
 
             Assert.AreEqual("Kate's email address is kramsey@thv11.com Their phone number is 501-743-6074 and their salary is $8000. They are currently marked as Satisfactory: True", employeeInfoString);
-
-
-
-
-
         }
     }
 }
