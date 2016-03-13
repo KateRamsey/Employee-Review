@@ -155,6 +155,35 @@ namespace Employee_Review_Test
         }
 
         [TestMethod]
+        public void TestZeroDollarRaise()
+        {
+            kate.Raise(0);
+            Assert.AreEqual(8000, kate.Salary);
+        }
+
+        [TestMethod]
+        public void TestNegativeRaise()
+        {
+            kate.Raise(-200);
+            Assert.AreEqual(8000, kate.Salary);
+        }
+
+        [TestMethod]
+        public void TestUnEvenRaise()
+        {
+            kate.Raise(333.33m);
+            Assert.AreEqual(8333.33m, kate.Salary);
+        }
+
+        [TestMethod]
+        public void TestLargeRaise()
+        {
+            kate.Raise(20000000);
+            Assert.AreEqual(8000, kate.Salary);
+        }
+
+
+        [TestMethod]
         public void TestDepartmentRaise()
         {
             d.AddEmployee(kate);

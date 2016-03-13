@@ -25,7 +25,10 @@ namespace Employee_Review
 
         public void Raise(decimal increase)
         {
-            Salary += increase;
+            if (increase > 0 && increase < 1000000)
+            {
+                Salary += increase;
+            }
         }
 
         public void EvaluateReview()
